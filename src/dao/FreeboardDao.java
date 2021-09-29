@@ -41,11 +41,19 @@ public class FreeboardDao {
 		mapper.close();
 		
 	}
-	public void delete(Freeboard dto) {
+	public int delete(Map map) {
 		SqlSession mapper = factory.openSession();
-		mapper.delete("delete",dto);
+		int n = mapper.delete("delete",map);
 		mapper.commit();
 		mapper.close();
+		return n;
+	}
+	
+	public Freeboard passwordCheck(Map map) {
+		SqlSession mapper = factory.openSession();
+		Freeboard dto = mapper.selectOne("passwordCheck",map);
+		mapper.close();
+		return dto;
 	}
 	
 	//idx로 한개 행 조회

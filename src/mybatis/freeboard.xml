@@ -21,10 +21,12 @@
 		update freeboard set subject = #{subject},content=#{content}
 		where idx=#{idx}
 	</update>
-	<delete id = "delete" parameterType = "dto.Freeboard">
-		delete from freeboard where idx =#{idx}
+	<delete id = "delete" parameterType = "java.util.Map">
+		delete from freeboard where idx =#{idx} and password = #{password}
 	</delete>
-	
+	<select id="passwordCheck" resultType="dto.Freeboard" parameterType="java.util.Map">
+		select * from freeboard where idx=#{idx} and password=#{password}
+	</select>
 	
 </mapper>
 <!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
