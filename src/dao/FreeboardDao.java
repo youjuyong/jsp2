@@ -43,7 +43,7 @@ public class FreeboardDao {
 	}
 	public int delete(Map map) {
 		SqlSession mapper = factory.openSession();
-		int n = mapper.delete("delete",map);
+		int n = mapper.delete("freeboard.delete",map);
 		mapper.commit();
 		mapper.close();
 		return n;
@@ -72,4 +72,10 @@ public class FreeboardDao {
 		return cnt;
 	}
 	
+	public void readCount(int idx) {
+		SqlSession mapper = factory.openSession();
+		mapper.update("readCount",idx);
+		mapper.commit();
+		mapper.close();
+	}
 }
